@@ -65,7 +65,7 @@ namespace EventSourceDocumentor.MSBuild
                     this.BuildEngine.LogMessageEvent(
                         new BuildMessageEventArgs(
                             string.Format(
-                                "Skipping EventSource document generation, as there are no files found at {0}",
+                                "Skipping EventSource document generation, as there are no files found at: {0}",
                                 filePath),
                             string.Empty,
                             "EventSourceDocumentor",
@@ -90,7 +90,7 @@ namespace EventSourceDocumentor.MSBuild
                     this.BuildEngine.LogMessageEvent(
                        new BuildMessageEventArgs(
                            string.Format(
-                               "Skipping EventSource documentation for file {0}, as not EventSource class found",
+                               "Skipping Non EventSource class at: {0}",
                                source.ItemSpec),
                            string.Empty,
                            "EventSourceDocumentor",
@@ -121,7 +121,7 @@ namespace EventSourceDocumentor.MSBuild
                 this.BuildEngine.LogMessageEvent(
                       new BuildMessageEventArgs(
                           string.Format(
-                              "EventSource documentation generated at:{0}",
+                              "EventSource documentation generated at: {0}",
                               outputPath),
                           string.Empty,
                           "EventSourceDocumentor",

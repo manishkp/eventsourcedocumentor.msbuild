@@ -2,3 +2,5 @@ source/EtwTestLibrary/bin/
 source/EtwTestLibrary/obj/
 source/EventSourceDocumentor.MSBuild/obj/
 source/EventSourceDocumentor.MSBuild/bin/
+source/EtwTestLibrary/Samples-EventSourceDemos-Customized.csv
+source/MSBuildDebugHelper/obj/

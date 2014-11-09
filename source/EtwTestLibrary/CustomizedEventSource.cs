@@ -16,6 +16,11 @@
         public void RequestStart(int RequestID, string Url)
         { WriteEvent(1, RequestID, Url); }
 
+        /// <summary>
+        /// Represents the Request Phase of the system
+        /// </summary>
+        /// <param name="RequestID">Request Id</param>
+        /// <param name="PhaseName">Request Phase</param>        
         [Event(2, Keywords = Keywords.Requests, Level = EventLevel.Verbose,
                Task = Tasks.Request, Opcode = EventOpcode.Info)]
         public void RequestPhase(int RequestID, string PhaseName)
@@ -29,6 +34,21 @@
         [Event(4, Keywords = Keywords.Debug)]
         public void DebugTrace(string Message)
         { WriteEvent(4, Message); }
+
+        /// <summary>
+        /// The request processing error during processing.
+        /// </summary>
+        /// <param name="RequestID">
+        /// The request id.
+        /// </param>
+        /// <param name="Url">
+        /// The url.
+        /// </param>
+        /// <resolution>Try fixing the configured url</resolution>
+        [Event(5, Keywords = Keywords.Requests,
+       Task = Tasks.Request, Opcode = EventOpcode.Suspend, Level = EventLevel.Error)]
+        public void RequestProcessingError(int RequestID, string Url)
+        { WriteEvent(5, RequestID, Url); }
 
         #region Keywords / Tasks / Opcodes
 

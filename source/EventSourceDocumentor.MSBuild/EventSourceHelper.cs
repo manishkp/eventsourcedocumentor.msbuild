@@ -40,7 +40,7 @@ namespace EventSourceDocumentor.MSBuild
             var classText = File.ReadAllText(filePath);
             var classTree = CSharpSyntaxTree.ParseText(classText);
             var classRoot = (CompilationUnitSyntax)classTree.GetRoot();
-            var ns = classRoot.Members.Single(m => m is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
+            var ns = classRoot.Members.SingleOrDefault(m => m is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
            
             if (ns == null)
             {
