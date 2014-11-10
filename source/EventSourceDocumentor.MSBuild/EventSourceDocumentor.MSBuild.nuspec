@@ -3,17 +3,41 @@
     <metadata>
         <id>EventSourceDocumentor.MSBuild</id>
         <version>1.0.0</version>
-        <title>EventSourceDocumentor build tasks</title>
+        <title>ETW EventSource Events Document (csv) generator.</title>
         <authors>Manish Kumar</authors>
         <owners>Manish Kumar</owners>
         <licenseUrl>https://bitbucket.org/Manishkp/eventsourcedocumentor.msbuild/raw/34cdc69e567bae449e548a8a97b0653a2e8f6eb3/source/license.txt</licenseUrl>
         <projectUrl>https://bitbucket.org/Manishkp/eventsourcedocumentor.msbuild/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>true</developmentDependency>
-        <description>EventSourceDocumentor</description>
-        <summary>EventSourceDocumentor build tasks</summary>
-        <releaseNotes>1.0.0: EventSourceDocumentor</releaseNotes>
-        <tags>EventSourceDocumentor</tags>
+        <description>This MSBuild task generates documentation for Events in a ETW EventSource class. This can combine event method comments like summary and resolution to helps Operations take action on the events.
+ /// &lt;summary&gt;
+        /// The request processing error during processing.
+        /// &lt;/summary&gt;
+        /// &lt;param name="RequestID"&gt;
+        /// The request id.
+        /// &lt;/param&gt;
+        /// &lt;param name="Url"&gt;
+        /// The url.
+        /// &lt;/param&gt;
+        /// &lt;resolution&gt;Try fixing the configured url&lt;/resolution&gt;
+ [Event(5, Keywords = Keywords.Requests,
+       Task = Tasks.Request, Opcode = EventOpcode.Suspend, Level = EventLevel.Error)]
+        public void RequestProcessingError(int RequestID, string Url)
+        { WriteEvent(5, RequestID, Url); }
+
+generates csv file named &lt;EventSourceName&gt;.csv
+with record
+
+EventName,EventId, EventLevel, Description, Resolution
+
+RequestProcessingError,5, Error, The request processing error during processing., Try fixing the configured url
+
+Note: only supports .Net4.5</description>
+        <summary>This MSBuild task generates documentation for Events in a ETW EventSource class. This can combine event method comments like summary and resolution to helps Operations take action on the events.</summary>
+        <releaseNotes>1.0.0: First version of EventSource Event doc generator, handles cases where CustomEventSource is directly derived from EventSource class, rather than Interface deriving from EventSource.
+Note: only supports .Net4.5</releaseNotes>
+        <tags>EventSource ETW</tags>
     </metadata>
     <files>
         <file src="EventSourceDocumentor.MSBuild.Targets" target="build\EventSourceDocumentor.MSBuild.Targets" />
