@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>EventSourceDocumentor.MSBuild</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>ETW EventSource Events Document (csv) generator.</title>
         <authors>Manish Kumar</authors>
         <owners>Manish Kumar</owners>
@@ -35,8 +35,10 @@ RequestProcessingError,5, Error, The request processing error during processing.
 
 Note: only supports .Net4.5</description>
         <summary>This MSBuild task generates documentation for Events in a ETW EventSource class. This can combine event method comments like summary and resolution to helps Operations take action on the events.</summary>
-        <releaseNotes>1.0.0: First version of EventSource Event doc generator, handles cases where CustomEventSource is directly derived from EventSource class, rather than Interface deriving from EventSource.
-Note: only supports .Net4.5</releaseNotes>
+        <releaseNotes>
+          1.0.0: First version of EventSource Event doc generator, handles cases where CustomEventSource is directly derived from EventSource class, rather than Interface deriving from EventSource.
+          1.0.1: Fixing Output csv file to be placed at OutDir
+          Note: only supports .Net4.5</releaseNotes>
         <tags>EventSource ETW</tags>
     </metadata>
     <files>

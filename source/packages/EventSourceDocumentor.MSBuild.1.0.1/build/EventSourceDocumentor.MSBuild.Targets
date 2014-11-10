@@ -8,7 +8,7 @@
  <Target Name="EventSourceDocumentor">    
     <!-- Run the StyleCop MSBuild task. -->
     <EventSourceDocumentor
-      OutputPath="$(MSBuildProjectDirectory)"
+      OutputPath="$(OutDir)"
       ProjectPath="$(MSBuildProjectDirectory)" 
       Sources="@(Compile)">
     </EventSourceDocumentor>
