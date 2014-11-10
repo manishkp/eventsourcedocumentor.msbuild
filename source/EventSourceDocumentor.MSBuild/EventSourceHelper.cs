@@ -173,14 +173,9 @@ namespace EventSourceDocumentor.MSBuild
 
                         if (comment != null)
                         {
-                            var commentsNode = XDocument.Parse("<comment>" + comment.ToString() + "</comment>");
-                            summary =
-                                (commentsNode.XPathSelectElement("comment/summary") ?? new XElement("dummy")).Value
-                                    .Replace(@"///", string.Empty).Replace('\n', ' ').Trim(' ');
-
-                            resolution =
-                                (commentsNode.XPathSelectElement("comment/resolution") ?? new XElement("dummy")).Value
-                                    .Replace(@"///", string.Empty).Replace('\n', ' ').Trim(' ');
+                            var commentsNode = XDocument.Parse("<comments>" + comment.ToString() + "</comments>");
+                            summary = FormatLinesInCommentSection(commentsNode, "summary");
+                            resolution = FormatLinesInCommentSection(commentsNode, "resolution");
                         }
 
                         return new EventRecord()
@@ -192,6 +187,22 @@ namespace EventSourceDocumentor.MSBuild
                                        Resolution = resolution
                                    };
                     });
+        }
+
+        /// <summary>
+        /// Formats the section from comments for preserving new line and still removing starting /// and space
+        /// </summary>
+        /// <param name="commentsXml">Comments XML</param>
+        /// <param name="commentSectionName">Name of the section in comment</param>
+        /// <returns>Formatter comments section</returns>
+        private static string FormatLinesInCommentSection(XDocument commentsXml, string commentSectionName)
+        {
+            var lines =
+                (commentsXml.XPathSelectElement("comments/" + commentSectionName) ?? new XElement("dummy")).Value.Split(
+                    Environment.NewLine.ToCharArray(),
+                    StringSplitOptions.RemoveEmptyEntries)
+                    .Select(line => line.TrimStart().Replace(@"///", string.Empty));
+            return string.Join(Environment.NewLine, lines);
         }
 
         /// <summary>

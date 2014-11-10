@@ -44,7 +44,10 @@
         /// <param name="Url">
         /// The url.
         /// </param>
-        /// <resolution>Try fixing the configured url</resolution>
+        /// <resolution>
+        /// 1> Try fixing the configured url
+        /// 2> Try anything else :)
+        /// </resolution>
         [Event(5, Keywords = Keywords.Requests,
        Task = Tasks.Request, Opcode = EventOpcode.Suspend, Level = EventLevel.Error)]
         public void RequestProcessingError(int RequestID, string Url)
