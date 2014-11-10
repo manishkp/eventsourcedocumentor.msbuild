@@ -1,6 +1,0 @@
-EventName,EventId,EventLevel,Description,Resolution
-RequestStart,1,Informational,,
-RequestPhase,2,Verbose,Represents the Request Phase of the system,
-RequestStop,3,Informational,,
-DebugTrace,4,Informational,,
-RequestProcessingError,5,Error,The request processing error during processing.,Try fixing the configured url

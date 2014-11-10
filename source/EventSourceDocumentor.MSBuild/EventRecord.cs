@@ -15,11 +15,6 @@ namespace EventSourceDocumentor.MSBuild
     public class EventRecord
     {
         /// <summary>
-        /// Gets or sets the event name.
-        /// </summary>
-        public string EventName { get; set; }
-
-        /// <summary>
         /// Gets or sets the event id.
         /// </summary>
         public string EventId { get; set; }
@@ -28,6 +23,11 @@ namespace EventSourceDocumentor.MSBuild
         /// Gets or sets the event level.
         /// </summary>
         public string EventLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event name.
+        /// </summary>
+        public string EventName { get; set; }       
 
         /// <summary>
         /// Gets or sets the description.

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>EventSourceDocumentor.MSBuild</id>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
         <title>ETW EventSource Events Document (csv) generator.</title>
         <authors>Manish Kumar</authors>
         <owners>Manish Kumar</owners>
@@ -40,6 +40,7 @@ Note: only supports .Net4.5</description>
           1.0.1: Fixing Output csv file to be placed at OutDir.
           1.0.2: CSV name would match style of .Man files ie AssemblyName.EventSourceName.csv
           1.0.3: Preserving line breaks from comments into the csv columns
+          1.0.4: Re-ordering the columns in csv output
           Note: only supports .Net4.5</releaseNotes>
         <tags>EventSource ETW</tags>
     </metadata>
