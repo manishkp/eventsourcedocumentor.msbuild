@@ -4,3 +4,4 @@ source/EventSourceDocumentor.MSBuild/obj/
 source/EventSourceDocumentor.MSBuild/bin/
 source/EtwTestLibrary/Samples-EventSourceDemos-Customized.csv
 source/MSBuildDebugHelper/obj/
+source/MSBuildDebugHelper/bin/Debug/Samples-EventSourceDemos-Customized.csv
