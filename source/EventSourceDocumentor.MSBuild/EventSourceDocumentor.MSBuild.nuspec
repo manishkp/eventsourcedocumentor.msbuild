@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>EventSourceDocumentor.MSBuild</id>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <title>ETW EventSource Events Document (csv) generator.</title>
         <authors>Manish Kumar</authors>
         <owners>Manish Kumar</owners>
         <licenseUrl>https://bitbucket.org/Manishkp/eventsourcedocumentor.msbuild/raw/34cdc69e567bae449e548a8a97b0653a2e8f6eb3/source/license.txt</licenseUrl>
         <projectUrl>https://bitbucket.org/Manishkp/eventsourcedocumentor.msbuild/</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <developmentDependency>true</developmentDependency>
         <description>This MSBuild task generates documentation for Events in a ETW EventSource class. This can combine event method comments like summary and resolution to helps Operations take action on the events.
  /// &lt;summary&gt;
@@ -37,7 +37,8 @@ Note: only supports .Net4.5</description>
         <summary>This MSBuild task generates documentation for Events in a ETW EventSource class. This can combine event method comments like summary and resolution to helps Operations take action on the events.</summary>
         <releaseNotes>
           1.0.0: First version of EventSource Event doc generator, handles cases where CustomEventSource is directly derived from EventSource class, rather than Interface deriving from EventSource.
-          1.0.1: Fixing Output csv file to be placed at OutDir
+          1.0.1: Fixing Output csv file to be placed at OutDir.
+          1.0.2: CSV name would match style of .Man files ie AssemblyName.EventSourceName.csv
           Note: only supports .Net4.5</releaseNotes>
         <tags>EventSource ETW</tags>
     </metadata>

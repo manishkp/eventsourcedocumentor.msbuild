@@ -11,7 +11,7 @@
     <AssemblyName>EtwTestLibrary</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>adf5823b</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>af885d76</NuGetPackageImportStamp>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -61,10 +61,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.EventRegister.1.0.26\build\Microsoft.Diagnostics.Tracing.EventRegister.targets'))" />
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\packages\EventSourceDocumentor.MSBuild.1.0.1\build\EventSourceDocumentor.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EventSourceDocumentor.MSBuild.1.0.1\build\EventSourceDocumentor.MSBuild.Targets'))" />
+    <Error Condition="!Exists('..\packages\EventSourceDocumentor.MSBuild.1.0.2\build\EventSourceDocumentor.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EventSourceDocumentor.MSBuild.1.0.2\build\EventSourceDocumentor.MSBuild.Targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="..\packages\EventSourceDocumentor.MSBuild.1.0.1\build\EventSourceDocumentor.MSBuild.Targets" Condition="Exists('..\packages\EventSourceDocumentor.MSBuild.1.0.1\build\EventSourceDocumentor.MSBuild.Targets')" />
+  <Import Project="..\packages\EventSourceDocumentor.MSBuild.1.0.2\build\EventSourceDocumentor.MSBuild.Targets" Condition="Exists('..\packages\EventSourceDocumentor.MSBuild.1.0.2\build\EventSourceDocumentor.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

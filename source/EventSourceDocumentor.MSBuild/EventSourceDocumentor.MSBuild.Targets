@@ -7,7 +7,8 @@
   </PropertyGroup>
  <Target Name="EventSourceDocumentor">    
     <!-- Run the StyleCop MSBuild task. -->
-    <EventSourceDocumentor
+   <EventSourceDocumentor
+      AssemblyName="$(AssemblyName)"
       OutputPath="$(OutDir)"
       ProjectPath="$(MSBuildProjectDirectory)" 
       Sources="@(Compile)">

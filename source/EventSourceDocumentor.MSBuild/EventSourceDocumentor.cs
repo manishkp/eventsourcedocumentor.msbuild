@@ -33,7 +33,7 @@ namespace EventSourceDocumentor.MSBuild
         public ITaskHost HostObject { get; set; }
 
         /// <summary>
-        /// Gets or sets class Full Path
+        /// Gets or sets classes
         /// </summary>
         [Required]
         public ITaskItem[] Sources { get; set; }
@@ -49,6 +49,12 @@ namespace EventSourceDocumentor.MSBuild
         /// </summary>
         [Required]
         public ITaskItem ProjectPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets Assembly Name
+        /// </summary>
+        [Required]
+        public ITaskItem AssemblyName { get; set; }
 
         /// <summary>
         /// Executes the Task
@@ -111,7 +117,15 @@ namespace EventSourceDocumentor.MSBuild
 
                 var records = EventSourceHelper.GetAllEventRecords(eventSourceClass);
 
-                var outputPath = Path.Combine(this.OutputPath.ItemSpec, eventSourceName + ".csv");
+                // if the assembly name is specified then prepend it
+                // this is to make it consistent with .man file generation
+                var outputFileName = eventSourceName + ".csv";
+                if (!string.IsNullOrWhiteSpace(this.AssemblyName.ItemSpec))
+                {
+                    outputFileName = this.AssemblyName.ItemSpec + "." + outputFileName;
+                }
+
+                var outputPath = Path.Combine(this.OutputPath.ItemSpec, outputFileName);
                 using (StreamWriter writer = File.CreateText(outputPath))
                 {
                     var csv = new CsvWriter(writer);

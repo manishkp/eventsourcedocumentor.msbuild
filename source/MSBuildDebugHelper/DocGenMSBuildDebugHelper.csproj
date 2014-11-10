@@ -59,7 +59,7 @@
   <UsingTask AssemblyFile="..\EventSourceDocumentor.MSBuild\bin\Debug\EventSourceDocumentor.MSBuild.dll" TaskName="EventSourceDocumentor" />
   <Target Name="EventSourceDocumentor">
     <!-- Run the StyleCop MSBuild task. -->
-    <EventSourceDocumentor OutputPath="$(MSBuildProjectDirectory)\$(OutputPath)" ProjectPath="$(MSBuildProjectDirectory)" Sources="@(Compile)">
+    <EventSourceDocumentor AssemblyName="$(AssemblyName)" OutputPath="$(MSBuildProjectDirectory)\$(OutputPath)" ProjectPath="$(MSBuildProjectDirectory)" Sources="@(Compile)">
     </EventSourceDocumentor>
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
