@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourceDocumentor.MSBui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocGenrationNugetPackageTest", "EtwTestLibrary\DocGenrationNugetPackageTest.csproj", "{33F1ECB1-3F7B-468D-8869-976222EBEAA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocGenMSBuildDebugHelper", "MSBuildDebugHelper\DocGenMSBuildDebugHelper.csproj", "{F1CE75A6-EB83-486D-98B7-75789516295D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{33F1ECB1-3F7B-468D-8869-976222EBEAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33F1ECB1-3F7B-468D-8869-976222EBEAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33F1ECB1-3F7B-468D-8869-976222EBEAA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1CE75A6-EB83-486D-98B7-75789516295D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1CE75A6-EB83-486D-98B7-75789516295D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1CE75A6-EB83-486D-98B7-75789516295D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1CE75A6-EB83-486D-98B7-75789516295D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,6 +17,7 @@ namespace EventSourceDocumentor.MSBuild
     using System.Xml.Linq;
     using System.Xml.XPath;
 
+    using Microsoft.Build.Framework;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -26,6 +27,29 @@ namespace EventSourceDocumentor.MSBuild
     /// </summary>
     public class EventSourceHelper
     {
+        /// <summary>
+        /// Gets or sets Build Engine
+        /// </summary>
+        private IBuildEngine _buildEngine;
+
+        /// <summary>
+        /// Gets or sets file name
+        /// </summary>
+        private string _file;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventSourceHelper"/> class.
+        /// </summary>
+        /// <param name="buildEngine">
+        /// The build engine.
+        /// </param>
+        /// <param name="file">file being processed</param>
+        public EventSourceHelper(IBuildEngine buildEngine, string file)
+        {
+            this._buildEngine = buildEngine;
+            this._file = file;
+        }
+
         /// <summary>
         /// The get event source class.
         /// </summary>
@@ -105,7 +129,7 @@ namespace EventSourceDocumentor.MSBuild
         /// <exception cref="ArgumentNullException">
         /// Event Source class is empty
         /// </exception>
-        public static IEnumerable<EventRecord> GetAllEventRecords(ClassDeclarationSyntax eventSourceClass)
+        public IEnumerable<EventRecord> GetAllEventRecords(ClassDeclarationSyntax eventSourceClass)
         {
             if (eventSourceClass == null)
             {
@@ -176,6 +200,42 @@ namespace EventSourceDocumentor.MSBuild
                             var commentsNode = XDocument.Parse("<comments>" + comment.ToString() + "</comments>");
                             summary = FormatLinesInCommentSection(commentsNode, "summary");
                             resolution = FormatLinesInCommentSection(commentsNode, "resolution");
+                        }
+
+                        var lineSpan = method.GetLocation().GetLineSpan();
+
+                        if (string.IsNullOrWhiteSpace(summary))
+                        {                            
+                            this._buildEngine.LogWarningEvent(
+                                new BuildWarningEventArgs(
+                                    "Event",
+                                    string.Empty,
+                                    this._file,
+                                    lineSpan.StartLinePosition.Line,
+                                    lineSpan.StartLinePosition.Character,
+                                    lineSpan.EndLinePosition.Line,
+                                    lineSpan.EndLinePosition.Character,
+                                    string.Format("Please provide a valid <summary></summary> in comments for this event '{0}'", method.Identifier.Text),
+                                    string.Empty,
+                                    "EventSourceDocumentor.MsBuild"));
+                        }
+
+                        if (string.IsNullOrWhiteSpace(resolution)
+                            && ((string.Compare(eventLevel, "Error", StringComparison.InvariantCultureIgnoreCase) == 0)
+                            || (string.Compare(eventLevel, "Critical", StringComparison.InvariantCultureIgnoreCase) == 0)))
+                        {                         
+                            this._buildEngine.LogWarningEvent(
+                                new BuildWarningEventArgs(
+                                    "Event",
+                                    string.Empty,
+                                    this._file,
+                                    lineSpan.StartLinePosition.Line,
+                                    lineSpan.StartLinePosition.Character,
+                                    lineSpan.EndLinePosition.Line,
+                                    lineSpan.EndLinePosition.Character,
+                                    string.Format("Please provide a valid <resolution></resolution> in comments for this event '{0}'", method.Identifier.Text),
+                                    string.Empty,
+                                    "EventSourceDocumentor.MsBuild"));
                         }
 
                         return new EventRecord()

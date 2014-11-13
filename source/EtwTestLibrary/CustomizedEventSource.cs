@@ -26,6 +26,13 @@
         public void RequestPhase(int RequestID, string PhaseName)
         { WriteEvent(2, RequestID, PhaseName); }
 
+        /// <summary>
+        /// The request stop.
+        /// </summary>
+        /// <resolution>
+        /// Poosible resolutions:
+        /// 1> Try fixing the configured url
+        /// 2> try something else</resolution>
         [Event(3, Keywords = Keywords.Requests,
                Task = Tasks.Request, Opcode = EventOpcode.Stop)]
         public void RequestStop(int RequestID)
@@ -34,24 +41,41 @@
         [Event(4, Keywords = Keywords.Debug)]
         public void DebugTrace(string Message)
         { WriteEvent(4, Message); }
-
+        
         /// <summary>
         /// The request processing error during processing.
         /// </summary>
-        /// <param name="RequestID">
+        /// <param name="requestID">
         /// The request id.
         /// </param>
-        /// <param name="Url">
+        /// <param name="url">
+        /// The url.
+        /// </param>
+        [Event(6, Keywords = Keywords.Requests,
+       Task = Tasks.Request, Opcode = EventOpcode.Receive, Level = EventLevel.Error)]
+        public void RequestProcessingError1(int requestID, string url)
+        {
+            WriteEvent(6, requestID, url);
+        }
+        
+        /// <summary>
+        /// The request processing error during processing.
+        /// </summary>
+        /// <param name="requestID">
+        /// The request id.
+        /// </param>
+        /// <param name="url">
         /// The url.
         /// </param>
         /// <resolution>
         /// 1> Try fixing the configured url
-        /// 2> Try anything else :)
-        /// </resolution>
+        /// 2> try something else</resolution>
         [Event(5, Keywords = Keywords.Requests,
        Task = Tasks.Request, Opcode = EventOpcode.Suspend, Level = EventLevel.Error)]
-        public void RequestProcessingError(int RequestID, string Url)
-        { WriteEvent(5, RequestID, Url); }
+        public void RequestProcessingError(int requestID, string url)
+        {
+            WriteEvent(5, requestID, url);
+        }
 
         #region Keywords / Tasks / Opcodes
 

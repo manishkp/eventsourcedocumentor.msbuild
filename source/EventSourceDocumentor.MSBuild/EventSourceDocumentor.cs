@@ -11,6 +11,7 @@ namespace EventSourceDocumentor.MSBuild
 {
     using System;
     using System.IO;
+    using System.Linq;
 
     using CsvHelper;
 
@@ -62,9 +63,10 @@ namespace EventSourceDocumentor.MSBuild
         /// <returns>True if success</returns>
         public bool Execute()
         {
-            // var projectpath = System.Environment.GetEnvironmentVariable("MSBuildProjectDirectory");
             foreach (var source in this.Sources)
             {
+                var helper = new EventSourceHelper(this.BuildEngine, source.ItemSpec);
+
                 var filePath = Path.Combine(this.ProjectPath.ItemSpec, source.ItemSpec);
                 if (!File.Exists(filePath))
                 {
@@ -115,7 +117,7 @@ namespace EventSourceDocumentor.MSBuild
                           "EventSourceDocumentor",
                           MessageImportance.Normal));
 
-                var records = EventSourceHelper.GetAllEventRecords(eventSourceClass);
+                var records = helper.GetAllEventRecords(eventSourceClass).OrderBy(e => e.EventId);
 
                 // if the assembly name is specified then prepend it
                 // this is to make it consistent with .man file generation
